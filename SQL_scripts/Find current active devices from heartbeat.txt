@@ -1,0 +1,6 @@
+SELECT * FROM Devices WITH(NOLOCK)
+WHERE Id IN (
+	SELECT DeviceId FROM DeviceHeartbeatStatuses
+	WHERE LastHeartbeatStatus = 'Ok'
+	AND LastHeartbeatTimestamp > '2024-01-01'
+	)

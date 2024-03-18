@@ -1,0 +1,13 @@
+SELECT
+	MONTH(CONVERT(datetime,Timestamp, 121)) AS monthly,
+	COUNT(*) AS COUNT
+FROM Transactions WITH(NOLOCK)
+where 
+	Timestamp > '2023-07-01 00:00'
+	and
+	Status = 'Successful'
+	and 
+	PayMethod = 'Cash'
+GROUP BY
+	MONTH(CONVERT(datetime,Timestamp, 121))
+ORDER BY monthly

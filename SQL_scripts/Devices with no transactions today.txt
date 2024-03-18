@@ -1,0 +1,10 @@
+SELECT DISTINCT(DeviceCode)
+FROM Transactions WITH (NOLOCK)
+WHERE Timestamp > '2023-09-01'
+AND
+DeviceCode NOT IN (
+	SELECT DISTINCT(DeviceCode)
+	FROM Transactions WITH (NOLOCK)
+	WHERE Timestamp > '2023-09-27'
+)
+ORDER BY DeviceCode

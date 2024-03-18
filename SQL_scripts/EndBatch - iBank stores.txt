@@ -1,0 +1,9 @@
+SELECT
+    D.CODE as 'Κωδικός'
+,D.NAME AS 'Κατάστημα'
+,B.EndTimestamp AS 'Ημερομηνία End Batch'
+,B.BatchNumber AS 'Αριθμός Ταμείου'
+FROM [NBG_Xenia].[dbo].[Batches] B
+Inner join devices D on D.ID=B.DEVICEID
+WHERE D.CODE LIKE '0869%' AND B.ENDTIMESTAMP > '2023-09-05 00:00:00.3290000' AND B.ENDTIMESTAMP < '2023-09-05 23:59:43.3290000' 
+ORDER BY B.ENDTIMESTAMP DESC

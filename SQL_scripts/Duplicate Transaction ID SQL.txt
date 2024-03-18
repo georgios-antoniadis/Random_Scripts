@@ -1,0 +1,9 @@
+SELECT * 
+FROM Transactions WITH (NOLOCK)
+WHERE Timestamp > '2023-09-01'
+AND 
+TransactionHostId IN (
+	SELECT TransactionHostId
+	FROM Transactions WITH (NOLOCK)
+	GROUP BY TransactionHostId
+	HAVING COUNT(*) > 1)

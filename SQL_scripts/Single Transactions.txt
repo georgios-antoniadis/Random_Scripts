@@ -1,0 +1,2 @@
+SELECT * FROM Transactions WITH (NOLOCK) WHERE 
+TransactionHostId = '93a2c2a7-d56f-44dd-bc89-ca94db76a4ff'

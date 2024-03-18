@@ -1,0 +1,2 @@
+SELECT * FROM Transactions WHERE TransactionTypeName LIKE N'%δεη%'
+AND Timestamp > '2023-12-01'

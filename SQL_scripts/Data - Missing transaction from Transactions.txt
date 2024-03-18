@@ -1,0 +1,16 @@
+SELECT * FROM EventStoreData WITH (NOLOCK)
+WHERE PaymentUid IN (
+	SELECT DISTINCT(PaymentUid) FROM EventStoreData WITH (NOLOCK)
+	WHERE 
+	Created > '2023-07-10'
+	AND 
+	Created < '2023-11-19'
+	AND PaymentUid NOT IN (
+		SELECT DISTINCT(TransactionHostId) FROM Transactions WITH(NOLOCK)
+		WHERE 
+		Timestamp > '2023-07-10'
+		AND
+		Timestamp < '2023-11-19'
+	)
+)
+ORDER BY PaymentUid

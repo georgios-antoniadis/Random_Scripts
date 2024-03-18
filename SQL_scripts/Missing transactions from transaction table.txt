@@ -1,0 +1,12 @@
+SELECT DISTINCT(PaymentUid) FROM EventStoreData WITH (NOLOCK)
+WHERE 
+Created > '2023-09-27 05:12:05.4540000'
+AND 
+Created < '2023-09-27 05:18:50.4540000'
+AND PaymentUid NOT IN (
+	SELECT DISTINCT(TransactionHostId) FROM Transactions WITH(NOLOCK)
+	WHERE 
+	Timestamp > '2023-09-27 05:13:05.4540000'
+	--AND
+	--Timestamp < '2023-09-27 05:17:50.4540000'
+)

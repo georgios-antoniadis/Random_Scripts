@@ -1,0 +1,7 @@
+SELECT * FROM DeviceLocalStorageLastProcessed WITH(NOLOCK)
+WHERE DeviceCode IN (
+	SELECT Code FROM Devices WITH(NOLOCK)
+	FULL JOIN DeviceHeartbeatStatuses ON Devices.Id = DeviceHeartbeatStatuses.DeviceId
+	WHERE DeviceHeartbeatStatuses.LastHeartbeatStatus = 'Ok'
+)
+AND ProcessDatetime < '2024-01-09'

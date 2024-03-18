@@ -1,0 +1,10 @@
+SELECT TR1.*
+FROM Transactions TR1 with (nolock)
+JOIN Transactions TR2
+ON TR1.DeviceCode = TR2.DeviceCode 
+AND TR1.BatchNumber = TR2.BatchNumber
+AND TR1.PaymentCode = TR2.PaymentCode
+AND TR1.TransactionTypeName = TR2.TransactionTypeName
+AND ABS(DATEDIFF(MINUTE, TR1.Timestamp, TR2.Timestamp)) <= 1
+WHERE TR1.Status <> TR2.Status
+ORDER BY Timestamp ASC
